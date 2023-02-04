@@ -2,27 +2,27 @@
 
 #include "../pe disassembler.hpp"
 
-image_export::export_iterator::export_iterator(image_export* const exports, unsigned const i) :
+export_iterator::export_iterator(image_export* const exports, unsigned const i) :
 	exports(exports), i(i)
 { }
 
-image_export::export_iterator& image_export::export_iterator::operator++()
+export_iterator& export_iterator::operator++()
 {
 	i++;
 	return *this;
 }
 
-bool image_export::export_iterator::operator!=(const export_iterator& rhs)
+bool export_iterator::operator!=(const export_iterator& rhs)
 {
 	return i != rhs.i;
 }
 
-bool image_export::export_iterator::operator==(const export_iterator& rhs)
+bool export_iterator::operator==(const export_iterator& rhs)
 {
 	return i == rhs.i;
 }
 
-std::pair<const char*, unsigned long> image_export::export_iterator::operator*()
+std::pair<const char*, unsigned long> export_iterator::operator*()
 {
 	const auto f = *exports->name_table()[i];
 	return std::make_pair<const char*, unsigned long>(
@@ -44,12 +44,12 @@ image_export::image_export(void* const base, unsigned long const offset) :
 	rva<IMAGE_EXPORT_DIRECTORY>(base, offset)
 { }
 
-image_export::export_iterator image_export::begin()
+export_iterator image_export::begin()
 {
 	return export_iterator(this, 0);
 }
 
-image_export::export_iterator image_export::end()
+export_iterator image_export::end()
 {
 	return export_iterator(this, (*this)->NumberOfNames);
 }

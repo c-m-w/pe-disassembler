@@ -2,83 +2,83 @@
 
 #pragma once
 
-class image_import_list : public rva<IMAGE_IMPORT_DESCRIPTOR>
+class thunk : public rva<IMAGE_THUNK_DATA32>
 {
 public:
 
-	class image_import : public rva<IMAGE_IMPORT_DESCRIPTOR>
-	{
-	public:
+	thunk(void* const base, unsigned long const offset);
 
-		class thunk : public rva<IMAGE_THUNK_DATA32>
-		{
-		public:
+	const char* name();
+};
 
-			thunk(void* const base, unsigned long const offset);
+template<typename T>
+class thunk_iterator : T
+{ };
 
-			const char* name();
-		};
+template<>
+class thunk_iterator<IMAGE_THUNK_DATA32> : public IMAGE_THUNK_DATA32
+{
+public:
 
-		template<typename T>
-		class thunk_iterator : T
-		{ };
+	thunk_iterator();
+	thunk_iterator(IMAGE_THUNK_DATA32&& th);
+};
 
-		template<>
-		class thunk_iterator<IMAGE_THUNK_DATA32> : public IMAGE_THUNK_DATA32
-		{
-		public:
+template<>
+class thunk_iterator<rva<IMAGE_THUNK_DATA32>> : public rva<IMAGE_THUNK_DATA32>
+{
+public:
 
-			thunk_iterator();
-			thunk_iterator(IMAGE_THUNK_DATA32&& th);
-		};
+	thunk_iterator(void* const base, unsigned long const offset);
+	thunk_iterator(rva<IMAGE_THUNK_DATA32> const& rhs);
 
-		template<>
-		class thunk_iterator<rva<IMAGE_THUNK_DATA32>> : public rva<IMAGE_THUNK_DATA32>
-		{
-		public:
+	bool operator!=(thunk_iterator<IMAGE_THUNK_DATA32> const& rhs);
+	thunk_iterator<rva<IMAGE_THUNK_DATA32>> operator++();
+	thunk operator*();
+};
 
-			thunk_iterator(void* const base, unsigned long const offset);
-			thunk_iterator(rva<IMAGE_THUNK_DATA32> const& rhs);
+class image_import : public rva<IMAGE_IMPORT_DESCRIPTOR>
+{
+public:
 
-			bool operator!=(thunk_iterator<IMAGE_THUNK_DATA32> const& rhs);
-			thunk_iterator<rva<IMAGE_THUNK_DATA32>> operator++();
-			thunk operator*();
-		};
+	image_import(void* const base, unsigned long const offset);
+	image_import(rva<IMAGE_IMPORT_DESCRIPTOR> const rhs);
 
-		image_import(void* const base, unsigned long const offset);
-		image_import(rva<IMAGE_IMPORT_DESCRIPTOR> const rhs);
+	thunk_iterator<rva<IMAGE_THUNK_DATA32>> begin();
+	thunk_iterator<IMAGE_THUNK_DATA32> end();
 
-		thunk_iterator<rva<IMAGE_THUNK_DATA32>> begin();
-		thunk_iterator<IMAGE_THUNK_DATA32> end();
+	const char* name();
+};
 
-		const char* name();
-	};
+template<typename T>
+class image_import_iterator : T
+{ };
 
-	template<typename T>
-	class image_import_iterator: T
-	{ };
+template<>
+class image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> : public IMAGE_IMPORT_DESCRIPTOR
+{
+public:
 
-	template<>
-	class image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> : public IMAGE_IMPORT_DESCRIPTOR
-	{
-	public:
+	image_import_iterator();
+	image_import_iterator(IMAGE_IMPORT_DESCRIPTOR&& im);
+};
 
-		image_import_iterator();
-		image_import_iterator(IMAGE_IMPORT_DESCRIPTOR&& im);
-	};
+template<>
+class image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>> : public rva<IMAGE_IMPORT_DESCRIPTOR>
+{
+public:
 
-	template<>
-	class image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>>: public rva<IMAGE_IMPORT_DESCRIPTOR>
-	{
-	public:
+	image_import_iterator(void* const base, unsigned long const offset);
+	image_import_iterator(rva<IMAGE_IMPORT_DESCRIPTOR> const& rhs);
 
-		image_import_iterator(void* const base, unsigned long const offset);
-		image_import_iterator(rva<IMAGE_IMPORT_DESCRIPTOR> const & rhs);
+	bool operator!=(image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> const& rhs);
+	image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>> operator++();
+	image_import operator*();
+};
 
-		bool operator!=(image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> const& rhs);
-		image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>> operator++();
-		image_import operator*();
-	};
+class image_import_list : public rva<IMAGE_IMPORT_DESCRIPTOR>
+{
+public:
 
 	image_import_list(void* const base, unsigned long const offset);
 

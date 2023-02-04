@@ -2,25 +2,25 @@
 
 #include "../pe disassembler.hpp"
 
-image_import_list::image_import::image_import(void* const base, unsigned long const offset) :
+image_import::image_import(void* const base, unsigned long const offset) :
 	rva<IMAGE_IMPORT_DESCRIPTOR>(base, offset)
 { }
 
-image_import_list::image_import::image_import(rva<IMAGE_IMPORT_DESCRIPTOR> const rhs) :
+image_import::image_import(rva<IMAGE_IMPORT_DESCRIPTOR> const rhs) :
 	rva<IMAGE_IMPORT_DESCRIPTOR>(rhs)
 { }
 
-image_import_list::image_import::thunk_iterator<rva<IMAGE_THUNK_DATA32>> image_import_list::image_import::begin()
+thunk_iterator<rva<IMAGE_THUNK_DATA32>> image_import::begin()
 {
 	return thunk_iterator<rva<IMAGE_THUNK_DATA32>>(reinterpret_cast<void *>(base), (*this)->OriginalFirstThunk);
 }
 
-image_import_list::image_import::thunk_iterator<IMAGE_THUNK_DATA32> image_import_list::image_import::end()
+thunk_iterator<IMAGE_THUNK_DATA32> image_import::end()
 {
 	return thunk_iterator<IMAGE_THUNK_DATA32>();
 }
 
-const char* image_import_list::image_import::name()
+const char* image_import::name()
 {
 	return reinterpret_cast<const char*>(base + (*this)->Name);
 }
@@ -29,21 +29,21 @@ image_import_list::image_import_list(void* const base, unsigned long const offse
 	rva<IMAGE_IMPORT_DESCRIPTOR>(base, offset)
 { }
 
-image_import_list::image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>> image_import_list::begin()
+image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>> image_import_list::begin()
 {
 	return image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>>(reinterpret_cast<void *>(base), offset);
 }
 
-image_import_list::image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> image_import_list::end()
+image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> image_import_list::end()
 {
 	return image_import_iterator<IMAGE_IMPORT_DESCRIPTOR>();
 }
 
-image_import_list::image_import::thunk::thunk(void* const base, unsigned long const offset) :
+thunk::thunk(void* const base, unsigned long const offset) :
 	rva<IMAGE_THUNK_DATA32>(base, offset)
 { }
 
-const char* image_import_list::image_import::thunk::name()
+const char* thunk::name()
 {
 	if ((*this)->u1.Ordinal & IMAGE_ORDINAL_FLAG32)
 		return reinterpret_cast<const char*>(IMAGE_ORDINAL32((*this)->u1.Ordinal), 0);
