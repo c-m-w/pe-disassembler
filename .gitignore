@@ -39,3 +39,11 @@ example/Debug/*
 pe disassembler/Debug/*
 *.vcxproj.filters
 *.vcxproj.user
+
+# CMake
+
+unix/Makefile
+unix/CMakeCache.txt
+unix/cmake_install.cmake
+unix/CMakeFiles/*
+

@@ -1,4 +1,0 @@
-/home/cole/repos/pe-disassembler/unix/CMakeFiles/rebuild_cache.dir
-/home/cole/repos/pe-disassembler/unix/CMakeFiles/edit_cache.dir
-/home/cole/repos/pe-disassembler/unix/CMakeFiles/test.dir
-/home/cole/repos/pe-disassembler/unix/CMakeFiles/serialize.dir
