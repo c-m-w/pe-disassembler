@@ -31,6 +31,9 @@
 *.out
 *.app
 
+# vim
+*.swp
+
 # Visual studio
 
 .vs/*
