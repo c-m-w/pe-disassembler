@@ -29,19 +29,11 @@ int main(int argc, char ** argv)
 		return std::cout << "invalid syntax" << std::endl, 1;
 
 	auto const file = argv[1];
-
-	std::cout << "reading file: " << file << std::endl;
-
 	auto data = read_file(file);	
-
-	std::cout << "size: " << data.size() << std::endl;	
-
+	
 	auto mb = pe(&data[0], data.size());
 	auto nt = mb.get_nt();
 
-	std::cout << "image base: " << nt->OptionalHeader.ImageBase << std::endl;
-
-	std::cout << "========= SERIALIZED DATA ==========" << std::endl;
 	std::cout << mb.serialize() << std::endl;
 
 	return 0;

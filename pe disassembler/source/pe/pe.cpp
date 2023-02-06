@@ -86,7 +86,6 @@ std::string pe::serialize()
 	{
 		nlohmann::json section{ };
 
-		std::cout << "seciton name ptr: " << (void*)s->Name << std::endl;
 		section["name"] = std::string(reinterpret_cast<const char*>(s->Name));
 		section["size"] = s->SizeOfRawData;
 		section["rva"] = s->VirtualAddress;
@@ -98,10 +97,7 @@ std::string pe::serialize()
 	{
 		nlohmann::json exp { };
 
-		std::cout << "here1" << std::endl;
-		std::cout << "ptr " << (void*)e.first << std::endl;
 		exp["name"] = std::string(e.first);
-		std::cout << "here" << std::endl;
 		exp["rva"] = e.second;
 
 		js["exports"].push_back(exp);

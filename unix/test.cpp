@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <cstring>
 #include <vector>
 
 int main()
@@ -15,7 +16,8 @@ int main()
 	{
 		std::string buffer {};
 
-		buffer.resize(1024);
+		buffer.resize(128);
+		std::memset(&buffer[0], 0, 128);
 
     	while (nullptr != fgets(&buffer[0], buffer.length(), fp))
         	std::cout << buffer << std::endl;
