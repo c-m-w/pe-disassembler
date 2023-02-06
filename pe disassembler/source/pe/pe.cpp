@@ -63,6 +63,8 @@ nt_header pe::get_nt()
 	return nt_header(data.get(), dos->e_lfanew);
 }
 
+#include <iostream>
+
 std::string pe::serialize()
 {
 	nlohmann::json js { };
@@ -95,12 +97,16 @@ std::string pe::serialize()
 	{
 		nlohmann::json exp { };
 
+		std::cout << "here1" << std::endl;
+		std::cout << "ptr " << e.first << std::endl;
 		exp["name"] = std::string(e.first);
+		std::cout << "here" << std::endl;
 		exp["rva"] = e.second;
 
 		js["exports"].push_back(exp);
 	}
 
+	
 	for (auto i : imports)
 	{
 		nlohmann::json import{ };
