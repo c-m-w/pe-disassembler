@@ -72,12 +72,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)pe disassembler\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\;$(SolutionDir)pe disassembler\source\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)pe disassembler\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\;$(SolutionDir)pe disassembler\source\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

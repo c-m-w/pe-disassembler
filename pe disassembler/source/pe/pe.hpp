@@ -25,4 +25,6 @@ public:
 
 	dos_header get_dos();
 	nt_header get_nt();
+
+	std::string serialize();
 };

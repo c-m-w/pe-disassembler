@@ -2,6 +2,8 @@
 
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS
+
 /******************************
 *
 *	standard library
@@ -13,6 +15,14 @@
 #include <memory>
 #include <stdexcept>
 #include <vector>
+
+/******************************
+*
+*	json
+*
+******************************/
+
+#include <json/single_include/nlohmann/json.hpp>
 
 #if not defined NO_TYPES
 #include "windows/windows.hpp"

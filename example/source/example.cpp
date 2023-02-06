@@ -39,6 +39,8 @@ void main()
 	auto exports = nt.get_directory<image_export>();
 	auto relocs  = nt.get_directory<image_base_relocations>();
 
+	std::cout << mb.serialize() << std::endl;
+
 	std::time_t time = nt->FileHeader.TimeDateStamp;
 
 	std::cout << "\n=========================" << std::endl;
