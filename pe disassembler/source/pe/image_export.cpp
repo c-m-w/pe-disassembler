@@ -26,7 +26,7 @@ std::pair<const char*, unsigned long> export_iterator::operator*()
 {
 	const auto f = *exports->name_table()[i];
 	return std::make_pair<const char*, unsigned long>(
-		reinterpret_cast<const char*>(exports->base + *exports->name_table()[i]),
+		reinterpret_cast<const char*>((unsigned long)exports->base + (unsigned long)*exports->name_table()[i]),
 		std::move(*exports->function_table()[i]));
 }
 
