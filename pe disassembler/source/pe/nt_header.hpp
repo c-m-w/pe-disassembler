@@ -2,6 +2,54 @@
 
 #pragma once
 
+class nt_header;
+
+template<typename T>
+class directory_wrapper
+{ };
+
+template<>
+class directory_wrapper<image_export>
+{
+private:
+
+	nt_header* parent;
+
+public:
+
+	directory_wrapper(nt_header* parent);
+
+	image_export operator*();
+};
+
+template<>
+class directory_wrapper<image_import_list>
+{
+private:
+
+	nt_header* parent;
+
+public:
+
+	directory_wrapper(nt_header* parent);
+
+	image_import_list operator*();
+};
+
+template<>
+class directory_wrapper<image_base_relocations>
+{
+private:
+
+	nt_header* parent;
+
+public:
+
+	directory_wrapper(nt_header* parent);
+
+	image_base_relocations operator*();
+};
+
 class nt_header: public header<IMAGE_NT_HEADERS32>
 {
 public:
@@ -11,17 +59,10 @@ public:
 	template<typename T>
 	T get_directory();
 
-	template<>
-	image_export
-	get_directory<image_export>();
-	template<>
-	image_import_list
-	get_directory<image_import_list>();
-	template<>
-	image_base_relocations
-	get_directory<image_base_relocations>();
-
 	section_list get_sections();
+
+	template<typename T>
+	friend class directory_wrapper;
 };
 
 #include "nt_header.ipp"
