@@ -2,10 +2,10 @@
 
 #pragma once
 
-typedef unsigned __int16 WORD;
-typedef unsigned __int32 DWORD;
-typedef unsigned __int64 QWORD;
+typedef unsigned short WORD;
+typedef unsigned int DWORD;
+typedef unsigned long int QWORD;
 
-typedef unsigned __int8 BYTE;
-typedef __int32 LONG;
-typedef __int8 CHAR;
+typedef unsigned char BYTE;
+typedef int LONG;
+typedef char CHAR;
