@@ -63,9 +63,7 @@ nt_header pe::get_nt()
 	return nt_header(data.get(), dos->e_lfanew);
 }
 
-#include <iostream>
-
-std::string pe::serialize()
+nlohmann::json pe::serialize()
 {
 	nlohmann::json js { };
 
@@ -126,5 +124,5 @@ std::string pe::serialize()
 		js["relocations"].push_back(reloc);
 	}
 
-	return js.dump(4);
+	return js;
 }
