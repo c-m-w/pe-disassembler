@@ -13,7 +13,7 @@ inline thunk_iterator<IMAGE_THUNK_DATA32>::thunk_iterator(IMAGE_THUNK_DATA32&& t
 	IMAGE_THUNK_DATA32(th)
 { }
 
-inline thunk_iterator<rva<IMAGE_THUNK_DATA32>>::thunk_iterator(void* const base, unsigned long const offset) :
+inline thunk_iterator<rva<IMAGE_THUNK_DATA32>>::thunk_iterator(void* const base, ptr_t const offset) :
 	rva<IMAGE_THUNK_DATA32>(base, offset)
 { }
 
@@ -44,7 +44,7 @@ inline image_import_iterator<IMAGE_IMPORT_DESCRIPTOR>::image_import_iterator(IMA
 	IMAGE_IMPORT_DESCRIPTOR(im)
 { }
 
-inline image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>>::image_import_iterator(void* const base, unsigned long const offset) :
+inline image_import_iterator<rva<IMAGE_IMPORT_DESCRIPTOR>>::image_import_iterator(void* const base, ptr_t const offset) :
 	rva<IMAGE_IMPORT_DESCRIPTOR>(base, offset)
 { }
 

@@ -6,7 +6,7 @@ class block_table_entry : public rva<WORD>
 {
 public:
 
-	block_table_entry(void* const base, unsigned long const offset);
+	block_table_entry(void* const base, ptr_t const offset);
 	block_table_entry(rva<WORD> const& rhs);
 };
 
@@ -18,7 +18,7 @@ private:
 
 public:
 
-	block_table_iterator(void* const base, unsigned const offset, unsigned const i = 0);
+	block_table_iterator(void* const base, ptr_t const offset, unsigned const i = 0);
 
 	block_table_entry operator*();
 	block_table_iterator& operator++();
@@ -29,7 +29,7 @@ class block_table : public rva<IMAGE_BASE_RELOCATION>
 {
 public:
 
-	block_table(void* const base, unsigned long const offset);
+	block_table(void* const base, ptr_t const offset);
 	block_table(rva<IMAGE_BASE_RELOCATION> const& rhs);
 
 	std::size_t entries();
@@ -58,7 +58,7 @@ class block_iterator<rva<IMAGE_BASE_RELOCATION>> : public rva<IMAGE_BASE_RELOCAT
 {
 public:
 
-	block_iterator(void* const base, unsigned long const offset);
+	block_iterator(void* const base, ptr_t const offset);
 	block_iterator(rva<IMAGE_BASE_RELOCATION> const& rhs);
 
 	block_table operator*();
@@ -70,7 +70,7 @@ class image_base_relocations : public rva<IMAGE_BASE_RELOCATION>
 {
 public:
 
-	image_base_relocations(void* const base, unsigned long const offset);
+	image_base_relocations(void* const base, ptr_t const offset);
 	image_base_relocations(rva<IMAGE_BASE_RELOCATION> const rhs);
 
 	block_iterator<rva<IMAGE_BASE_RELOCATION>> begin();

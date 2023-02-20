@@ -2,7 +2,7 @@
 
 #include "../pe disassembler.hpp"
 
-section::section(void* const base, unsigned long const offset) :
+section::section(void* const base, ptr_t const offset) :
 	rva<IMAGE_SECTION_HEADER>(base, offset)
 { }
 
@@ -10,7 +10,7 @@ section::section(rva<IMAGE_SECTION_HEADER> const rhs) :
 	rva<IMAGE_SECTION_HEADER>(rhs)
 { }
 
-section_list::section_list(void* const base, unsigned long const offset, unsigned const n) :
+section_list::section_list(void* const base, ptr_t const offset, unsigned const n) :
 	rva<IMAGE_SECTION_HEADER>(base, offset), n(n)
 { }
 

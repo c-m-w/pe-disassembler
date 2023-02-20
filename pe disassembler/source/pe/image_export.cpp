@@ -22,11 +22,11 @@ bool export_iterator::operator==(const export_iterator& rhs)
 	return i == rhs.i;
 }
 
-std::pair<const char*, unsigned long> export_iterator::operator*()
+std::pair<const char*, ptr_t> export_iterator::operator*()
 {
 	const auto f = *exports->name_table()[i];
-	return std::make_pair<const char*, unsigned long>(
-		reinterpret_cast<const char*>((unsigned long)exports->base + (unsigned long)*exports->name_table()[i]),
+	return std::make_pair<const char*, ptr_t>(
+		reinterpret_cast<const char*>((ptr_t)exports->base + (ptr_t)*exports->name_table()[i]),
 		std::move(*exports->function_table()[i]));
 }
 
@@ -40,7 +40,7 @@ rva<unsigned long> image_export::name_table()
 	return rva<unsigned long>(base, (*this)->AddressOfNames);
 }
 
-image_export::image_export(void* const base, unsigned long const offset) :
+image_export::image_export(void* const base, ptr_t const offset) :
 	rva<IMAGE_EXPORT_DIRECTORY>(base, offset)
 { }
 

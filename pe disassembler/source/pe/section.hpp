@@ -8,7 +8,7 @@ class section : public rva<IMAGE_SECTION_HEADER>
 {
 public:
 
-	section(void* const base, unsigned long const offset);
+	section(void* const base, ptr_t const offset);
 	section(rva<IMAGE_SECTION_HEADER> const rhs);
 };
 
@@ -36,7 +36,7 @@ private:
 
 public:
 
-	section_list(void* const base, unsigned long const offset, unsigned const n);
+	section_list(void* const base, ptr_t const offset, unsigned const n);
 
 	section_iterator begin();
 	section_iterator end();

@@ -2,7 +2,7 @@
 
 #include "../pe disassembler.hpp"
 
-image_import::image_import(void* const base, unsigned long const offset) :
+image_import::image_import(void* const base, ptr_t const offset) :
 	rva<IMAGE_IMPORT_DESCRIPTOR>(base, offset)
 { }
 
@@ -22,10 +22,10 @@ thunk_iterator<IMAGE_THUNK_DATA32> image_import::end()
 
 const char* image_import::name()
 {
-	return reinterpret_cast<const char*>(base + (*this)->Name);
+	return reinterpret_cast<const char*>(reinterpret_cast<ptr_t>(base) + (*this)->Name);
 }
 
-image_import_list::image_import_list(void* const base, unsigned long const offset) :
+image_import_list::image_import_list(void* const base, ptr_t const offset) :
 	rva<IMAGE_IMPORT_DESCRIPTOR>(base, offset)
 { }
 
@@ -39,7 +39,7 @@ image_import_iterator<IMAGE_IMPORT_DESCRIPTOR> image_import_list::end()
 	return image_import_iterator<IMAGE_IMPORT_DESCRIPTOR>();
 }
 
-thunk::thunk(void* const base, unsigned long const offset) :
+thunk::thunk(void* const base, ptr_t const offset) :
 	rva<IMAGE_THUNK_DATA32>(base, offset)
 { }
 

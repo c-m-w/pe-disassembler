@@ -12,7 +12,7 @@ inline block_iterator<IMAGE_BASE_RELOCATION>::block_iterator(IMAGE_BASE_RELOCATI
 	IMAGE_BASE_RELOCATION(rhs)
 { }
 
-inline block_iterator<rva<IMAGE_BASE_RELOCATION>>::block_iterator(void* const base, unsigned long const offset) :
+inline block_iterator<rva<IMAGE_BASE_RELOCATION>>::block_iterator(void* const base, ptr_t const offset) :
 	rva<IMAGE_BASE_RELOCATION>(base, offset)
 { }
 

@@ -18,7 +18,7 @@ public:
 	export_iterator& operator++();
 	bool operator!=(const export_iterator& rhs);
 	bool operator==(const export_iterator& rhs);
-	std::pair<const char*, unsigned long> operator*();
+	std::pair<const char*, ptr_t> operator*();
 };
 
 class image_export : public rva<IMAGE_EXPORT_DIRECTORY>
@@ -30,7 +30,7 @@ private:
 
 public:
 
-	image_export(void* const base, unsigned long const offset);
+	image_export(void* const base, ptr_t const offset);
 
 	export_iterator begin();
 	export_iterator end();

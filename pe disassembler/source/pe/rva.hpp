@@ -2,18 +2,28 @@
 
 #pragma once
 
+#if defined(BUILD_32)
+
+using ptr_t = unsigned long;
+
+#else
+
+using ptr_t = unsigned long long;
+
+#endif
+
 template<typename T>
 class rva
 {
 protected:
 
-	unsigned long base;
-	unsigned long offset;
+	void * base;
+	ptr_t offset;
 
 public:
 
-	rva(unsigned long const base, unsigned long const offset);
-	rva(void * const base, unsigned long const offset);
+	rva(ptr_t base, ptr_t offset);
+	rva(void * const base, ptr_t offset);
 
 	T* operator->() const;
 	T& operator*() const;
@@ -27,7 +37,7 @@ public:
 	bool operator!=(const rva<T> rhs);
 	bool operator!();
 
-	void advance(unsigned long const by);
+	void advance(ptr_t by);
 };
 
 #include "rva.ipp"

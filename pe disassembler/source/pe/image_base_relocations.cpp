@@ -2,7 +2,7 @@
 
 #include "../pe disassembler.hpp"
 
-block_table_entry::block_table_entry(void* const base, unsigned long const offset) :
+block_table_entry::block_table_entry(void* const base, ptr_t const offset) :
 	rva<WORD>(base, offset)
 { }
 
@@ -10,7 +10,7 @@ block_table_entry::block_table_entry(rva<WORD> const& rhs) :
 	rva<WORD>(rhs)
 { }
 
-block_table_iterator::block_table_iterator(void* const base, unsigned const offset,  unsigned const i) :
+block_table_iterator::block_table_iterator(void* const base, ptr_t const offset,  unsigned const i) :
 	rva<WORD>(base, offset), i(i)
 { }
 
@@ -32,7 +32,7 @@ bool block_table_iterator::operator!=(block_table_iterator const& rhs)
 	return i != rhs.i;
 }
 
-block_table::block_table(void* const base, unsigned long const offset) :
+block_table::block_table(void* const base, ptr_t const offset) :
 	rva<IMAGE_BASE_RELOCATION>(base, offset)
 { }
 
@@ -57,7 +57,7 @@ block_table_iterator block_table::end()
 	return block_table_iterator(reinterpret_cast<void *>(base), offset + sizeof(IMAGE_BASE_RELOCATION) + sizeof(WORD) * e, e);
 }
 
-image_base_relocations::image_base_relocations(void* const base, unsigned long const offset) :
+image_base_relocations::image_base_relocations(void* const base, ptr_t const offset) :
 	rva<IMAGE_BASE_RELOCATION>(base, offset)
 { }
 

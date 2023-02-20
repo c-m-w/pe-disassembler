@@ -39,7 +39,9 @@
 .vs/*
 Debug/*
 example/Debug/*
+example/x64/*
 pe disassembler/Debug/*
+pe disassembler/x64/*
 *.vcxproj.filters
 *.vcxproj.user
 
