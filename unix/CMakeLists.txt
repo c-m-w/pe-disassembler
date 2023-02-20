@@ -25,5 +25,5 @@ set(SERIALIZE_SRC
 	${SOURCEDIR}/pe/section.cpp
 )
 add_executable(serialize ${SERIALIZE_SRC})
-add_executable(test test.cpp)
+add_executable(test-print test-print.cpp)
 
