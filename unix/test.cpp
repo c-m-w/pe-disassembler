@@ -8,7 +8,8 @@
 int main()
 {
 	std::cout << "calling serialize..." << std::endl;
-
+	
+	return 0;
 	auto const fp = popen("./serialize 'messagebox.dll'", "r");
 	
 	if (auto const fp = popen("./serialize 'messagebox.dll'", "r");

@@ -32,7 +32,6 @@ int main(int argc, char ** argv)
 	auto data = read_file(file);	
 	
 	auto mb = pe(&data[0], data.size());
-	auto nt = mb.get_nt();
 
 	std::cout << mb.serialize() << std::endl;
 
