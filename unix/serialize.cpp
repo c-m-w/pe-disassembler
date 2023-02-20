@@ -31,19 +31,23 @@ int main(int argc, char ** argv)
 
 	auto const file = argv[1];
 	auto data = read_file(file);	
+
+	nlohmann::json out { };
 	
 	try
 	{
 		auto mb = pe(&data[0], data.size());
 		auto nt = mb.get_nt();
-		std::cout << "here" << std::endl;
-		std::cout << "IMAGE BASE: \t0x" << std::hex << nt->OptionalHeader.ImageBase << std::endl;
-		std::cout << mb.serialize().dump(4) << std::endl;
+		
+		out["success"] = true;
+		out["data"] = mb.serialize();
 	}
 	catch( ... )
 	{
-		
+		out["success"] = false;
 	}
+
+	std::cout << out.dump(4) << std::endl;
 
 	return 0;
 }
