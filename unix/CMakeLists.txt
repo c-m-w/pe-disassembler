@@ -7,11 +7,13 @@ project(test)
 # use c++ 20
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_FLAGS -m32)
 
 # add dependencies include dir
 set(SOURCEDIR ../pe\ disassembler/source/)
 include_directories(../dependencies)
+include_directories(../dependencies/cpython/Include)
+include_directories(/usr/include/python3.8)
+include_directories(/usr/include)
 include_directories(${SOURCEDIR})
 
 set(SERIALIZE_SRC
