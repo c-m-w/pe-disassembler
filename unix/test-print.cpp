@@ -7,7 +7,7 @@
 
 int main()
 {
-	std::cout << "calling serialize..." << std::endl;
+	std::cout << "calling serialize..." << sizeof(unsigned long long) << std::endl;
 	
 	return 0;
 	auto const fp = popen("./serialize 'messagebox.dll'", "r");
