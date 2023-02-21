@@ -25,6 +25,7 @@ bool export_iterator::operator==(const export_iterator& rhs)
 std::pair<const char*, ptr_t> export_iterator::operator*()
 {
 	const auto f = *exports->name_table()[i];
+	std::cout << std::hex << "f: " << (ptr_t)&f << std::endl;
 	return std::make_pair<const char*, ptr_t>(
 		reinterpret_cast<const char*>((ptr_t)exports->base + (ptr_t)*exports->name_table()[i]),
 		std::move(*exports->function_table()[i]));

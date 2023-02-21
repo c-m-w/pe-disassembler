@@ -54,7 +54,7 @@ block_table_iterator block_table::end()
 {
 	auto const e = entries();
 
-	return block_table_iterator(reinterpret_cast<void *>(base), offset + sizeof(IMAGE_BASE_RELOCATION) + sizeof(WORD) * e, e);
+	return block_table_iterator(reinterpret_cast<void *>(base), offset + static_cast<ptr_t>(sizeof(IMAGE_BASE_RELOCATION) + sizeof(WORD) * static_cast<ptr_t>(e)), static_cast<unsigned>(e));
 }
 
 image_base_relocations::image_base_relocations(void* const base, ptr_t const offset) :

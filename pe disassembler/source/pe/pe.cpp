@@ -30,9 +30,9 @@ pe::pe(void* const ptr, std::size_t const size)
 	for (auto reloc : new_nt.get_directory<image_base_relocations>())
 		for (auto p : reloc)
 		{
-			auto patch = rva<DWORD>(data.get(), reloc->VirtualAddress + *p);
+			auto patch = rva<DWORD>(data.get(), static_cast<ptr_t>(reloc->VirtualAddress) + *p);
 
-			*patch += delta;
+			*patch += static_cast<DWORD>(delta);
 		}
 
 	if (!valid_pe())
