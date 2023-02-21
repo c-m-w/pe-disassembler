@@ -33,3 +33,4 @@ constexpr unsigned char DOS_SIGNATURE[DOS_SIGNATURE_LENGTH] = { 'M', 'Z' };
 
 constexpr auto NT_SIGNATURE_LENGTH = 4;
 constexpr unsigned char NT_SIGNATURE[NT_SIGNATURE_LENGTH] = { 'P', 'E', 0, 0};
+constexpr unsigned char NT_32_SIGNATURE = 'L';

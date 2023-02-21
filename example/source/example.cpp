@@ -13,7 +13,8 @@
 
 std::vector<char> read_file()
 {
-	std::ifstream file(R"(C:\Users\cole\Desktop\messagebox.dll)", std::ios::binary);
+	//std::ifstream file(R"(C:\Users\cole\Desktop\messagebox.dll)", std::ios::binary);
+	std::ifstream file(R"(C:\Users\cole\source\repos\pe-disassembler\Debug\example.exe)", std::ios::binary);
 	std::vector<char> out;
 
 	file.seekg(0, std::ios::end);
@@ -63,13 +64,13 @@ void main()
 		std::cout << "\tRVA: " << "\t0x" << std::hex << s->VirtualAddress << std::endl;
 	}
 
-	std::cout << "\n=========================" << std::endl;
+	/*std::cout << "\n=========================" << std::endl;
 	std::cout << "\tEXPORTS" << std::endl;
 	std::cout << "=========================\n" << std::endl;
 
 	for (auto e : exports)
 		std::cout << e.first << " at IMAGE_BASE + 0x" 
-				  << std::hex << e.second << std::endl;
+				  << std::hex << e.second << std::endl;*/
 
 	std::cout << "\n=========================" << std::endl;
 	std::cout << "\tIMPORTS" << std::endl;
