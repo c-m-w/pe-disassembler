@@ -11,9 +11,6 @@ pe::pe(void* const ptr, std::size_t const size)
 
 	std::memcpy(data.get(), ptr, nt->OptionalHeader.SizeOfHeaders);
 
-	auto j = data.get();
-	auto h = data.get() + nt->OptionalHeader.SizeOfImage;
-
 	auto const delta = reinterpret_cast<std::uintptr_t>(data.get()) - nt->OptionalHeader.ImageBase;
 	
 	for (auto section: nt.get_sections())
@@ -39,15 +36,10 @@ pe::pe(void* const ptr, std::size_t const size)
 			auto patch = rva<DWORD>(data.get(), static_cast<ptr_t>(reloc->VirtualAddress) + (*p & 0xFFF));
 
 			*patch += static_cast<DWORD>(delta);
-			auto f = *patch;
-			if (f > (ptr_t)h)
-				throw std::runtime_error("patch out of range");
-			f = 6;
-			f;
 		}
 
 	if (!valid_pe())
-		throw std::runtime_error("invalid PE");
+		throw bad_pe();
 }
 
 bool pe::valid_pe()
@@ -122,7 +114,7 @@ nlohmann::json pe::serialize()
 		for (auto t : i)
 		{
 			auto const name = t.name();
-			import["list"].push_back(nullptr == name ? "??" : std::string(name));
+			import["list"].push_back(nullptr == name ? "failed to resolve" : std::string(name));
 		}
 
 		js["imports"].push_back(import);
@@ -140,4 +132,3 @@ nlohmann::json pe::serialize()
 
 	return js;
 }
-

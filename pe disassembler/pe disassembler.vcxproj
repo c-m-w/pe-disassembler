@@ -146,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="source\except\except.hpp" />
+    <ClInclude Include="source\except\except.ipp" />
     <ClInclude Include="source\pe disassembler.hpp" />
     <ClInclude Include="source\pe\image_base_relocations.hpp" />
     <ClInclude Include="source\pe\dos_header.hpp" />
@@ -167,6 +169,7 @@
     <ClInclude Include="source\windows\windows.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\except\except.cpp" />
     <ClCompile Include="source\pe\dos_header.cpp" />
     <ClCompile Include="source\pe\image_base_relocations.cpp" />
     <ClCompile Include="source\pe\image_export.cpp" />

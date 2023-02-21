@@ -15,6 +15,7 @@
 #include <memory>
 #include <stdexcept>
 #include <vector>
+#include <exception>
 
 /******************************
 *
@@ -24,8 +25,15 @@
 
 #include <json/single_include/nlohmann/json.hpp>
 
+/******************************
+*
+******************************/
+
 #if not defined NO_TYPES
 #include "windows/windows.hpp"
 #endif
 
+#include "except/except.hpp"
+
 #include "pe/pe.hpp"
+

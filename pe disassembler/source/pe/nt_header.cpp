@@ -6,10 +6,10 @@ nt_header::nt_header(void* const base, unsigned long const e_lfanew) :
 	header<IMAGE_NT_HEADERS32>(base, e_lfanew)
 {
 	if (std::memcmp(&(*this)->Signature, NT_SIGNATURE, NT_SIGNATURE_LENGTH))
-		throw std::runtime_error("bad NT header");
+		throw bad_pe();
 
 	if (*(reinterpret_cast<unsigned char*>(&(*this)->Signature) + 4) != NT_32_SIGNATURE)
-		throw std::runtime_error("not 32 bit");
+		throw bad_architecture();
 }
 
 section_list nt_header::get_sections()
