@@ -40,8 +40,10 @@
 Debug/*
 example/Debug/*
 example/x64/*
+example/Release*
 pe disassembler/Debug/*
 pe disassembler/x64/*
+pe disassembler/Release*
 x64/*
 *.vcxproj.filters
 *.vcxproj.user

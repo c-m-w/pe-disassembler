@@ -26,6 +26,20 @@
 #define IMAGE_ORDINAL_FLAG32 0x80000000
 #define IMAGE_ORDINAL32(Ordinal) (Ordinal & 0xffff)
 
+#define IMAGE_REL_BASED_ABSOLUTE              0
+#define IMAGE_REL_BASED_HIGH                  1
+#define IMAGE_REL_BASED_LOW                   2
+#define IMAGE_REL_BASED_HIGHLOW               3
+#define IMAGE_REL_BASED_HIGHADJ               4
+#define IMAGE_REL_BASED_MACHINE_SPECIFIC_5    5
+#define IMAGE_REL_BASED_RESERVED              6
+#define IMAGE_REL_BASED_MACHINE_SPECIFIC_7    7
+#define IMAGE_REL_BASED_MACHINE_SPECIFIC_8    8
+#define IMAGE_REL_BASED_MACHINE_SPECIFIC_9    9
+#define IMAGE_REL_BASED_DIR64                 10
+
+#define RELOC_FLAG32(p) ((p >> 0x0C) == IMAGE_REL_BASED_HIGHLOW)
+
 #define IMAGE_SIZEOF_SHORT_NAME              8
 
 constexpr auto DOS_SIGNATURE_LENGTH = 2;

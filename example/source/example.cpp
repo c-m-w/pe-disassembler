@@ -13,8 +13,7 @@
 
 std::vector<char> read_file()
 {
-	//std::ifstream file(R"(C:\Users\cole\Desktop\messagebox.dll)", std::ios::binary);
-	std::ifstream file(R"(C:\Users\cole\source\repos\pe-disassembler\Debug\example.exe)", std::ios::binary);
+	std::ifstream file(R"(C:\Users\Cole\Desktop\kernel32.dll)", std::ios::binary);
 	std::vector<char> out;
 
 	file.seekg(0, std::ios::end);
