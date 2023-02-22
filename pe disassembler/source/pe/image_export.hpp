@@ -25,8 +25,8 @@ class image_export : public rva<IMAGE_EXPORT_DIRECTORY>
 {
 private:
 
-	rva<unsigned long> function_table();
-	rva<unsigned long> name_table();
+	rva<unsigned> function_table();
+	rva<unsigned> name_table();
 
 public:
 

@@ -26,15 +26,20 @@ std::vector<char> read_file(std::string const & file_name)
 
 int main(int argc, char ** argv)
 {
+	nlohmann::json out { };
+	
 	if (2 != argc)
-		return std::cout << "invalid syntax" << std::endl, 1;
+	{
+		out["success"] = false;
+		out["message"] = "error in program arguments";
+		
+		std::cout << out.dump(4) << std::endl;
+		
+		return 0;
+	}
 
 	auto const file = argv[1];
 	auto data = read_file(file);	
-
-	std::cout << data.size() << std::endl;
-
-	nlohmann::json out { };
 	
 	try
 	{
@@ -44,9 +49,17 @@ int main(int argc, char ** argv)
 		out["success"] = true;
 		out["data"] = mb.serialize();
 	}
-	catch( ... )
+	catch(bad_pe & e)
 	{
 		out["success"] = false;
+		out["message"] = e.what();
+		std::cout << e.what() << std::endl;
+	}
+	catch(bad_architecture & e)
+	{
+		out["success"] = false;
+		out["message"] = e.what();
+		std::cout << e.what() << std::endl;
 	}
 
 	std::cout << out.dump(4) << std::endl;

@@ -29,14 +29,14 @@ std::pair<const char*, ptr_t> export_iterator::operator*()
 		std::move(*exports->function_table()[i]));
 }
 
-rva<unsigned long> image_export::function_table()
+rva<unsigned> image_export::function_table()
 {
-	return rva<unsigned long>(base, (*this)->AddressOfFunctions);
+	return rva<unsigned>(base, (*this)->AddressOfFunctions);
 }
 
-rva<unsigned long> image_export::name_table()
+rva<unsigned> image_export::name_table()
 {
-	return rva<unsigned long>(base, (*this)->AddressOfNames);
+	return rva<unsigned>(base, (*this)->AddressOfNames);
 }
 
 image_export::image_export(void* const base, ptr_t const offset) :
