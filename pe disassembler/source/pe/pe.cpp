@@ -66,6 +66,8 @@ nt_header pe::get_nt()
 	return nt_header(data.get(), dos->e_lfanew);
 }
 
+#include <iostream>
+
 nlohmann::json pe::serialize()
 {
 	nlohmann::json js { };
@@ -87,6 +89,7 @@ nlohmann::json pe::serialize()
 	{
 		nlohmann::json section{ };
 
+		std::cout << std::hex << (ptr_t)s->Name << std::endl;
 		section["name"] = std::string(reinterpret_cast<const char*>(s->Name));
 		section["size"] = s->SizeOfRawData;
 		section["rva"] = s->VirtualAddress;
@@ -98,12 +101,13 @@ nlohmann::json pe::serialize()
 	{
 		nlohmann::json exp { };
 
+		std::cout << "here" << std::endl;
+		std::cout << std::hex << (ptr_t)e.first << std::endl;
 		exp["name"] = std::string(e.first);
 		exp["rva"] = e.second;
 
 		js["exports"].push_back(exp);
 	}
-
 	
 	for (auto i : imports)
 	{

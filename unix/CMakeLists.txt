@@ -25,6 +25,7 @@ set(SERIALIZE_SRC
 	${SOURCEDIR}/pe/nt_header.cpp
 	${SOURCEDIR}/pe/pe.cpp
 	${SOURCEDIR}/pe/section.cpp
+	${SOURCEDIR}/except/except.cpp
 )
 add_executable(serialize ${SERIALIZE_SRC})
 add_executable(test-print test-print.cpp)

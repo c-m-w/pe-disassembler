@@ -32,6 +32,8 @@ int main(int argc, char ** argv)
 	auto const file = argv[1];
 	auto data = read_file(file);	
 
+	std::cout << data.size() << std::endl;
+
 	nlohmann::json out { };
 	
 	try
