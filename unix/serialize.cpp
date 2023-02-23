@@ -53,13 +53,11 @@ int main(int argc, char ** argv)
 	{
 		out["success"] = false;
 		out["message"] = e.what();
-		std::cout << e.what() << std::endl;
 	}
 	catch(bad_architecture & e)
 	{
 		out["success"] = false;
 		out["message"] = e.what();
-		std::cout << e.what() << std::endl;
 	}
 
 	std::cout << out.dump(4) << std::endl;
