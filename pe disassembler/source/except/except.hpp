@@ -10,12 +10,12 @@ public:
 	pe_except();
 };
 
-constexpr char BAD_PE_MESSAGE[] = "file is not a valid PE format";
+constexpr char BAD_PE_MESSAGE[] = "File is not a valid PE format";
 
 class bad_pe : public pe_except<BAD_PE_MESSAGE>
 { };
 
-constexpr char BAD_ARCHITECTURE_MESSAGE[] = "file is not 32-bit PE";
+constexpr char BAD_ARCHITECTURE_MESSAGE[] = "File is not 32-bit PE";
 
 class bad_architecture : public pe_except<BAD_ARCHITECTURE_MESSAGE>
 { };
