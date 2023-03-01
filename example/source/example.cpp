@@ -13,7 +13,7 @@
 
 std::vector<char> read_file()
 {
-	std::ifstream file(R"(C:\Users\Cole\Desktop\kernel32.dll)", std::ios::binary);
+	std::ifstream file(R"(C:\Users\Cole\Desktop\messagebox.dll)", std::ios::binary);
 	std::vector<char> out;
 
 	file.seekg(0, std::ios::end);
@@ -39,7 +39,24 @@ void main()
 	auto exports = nt.get_directory<image_export>();
 	auto relocs  = nt.get_directory<image_base_relocations>();
 
-	std::cout << mb.serialize().dump(4) << std::endl;
+	nlohmann::json out{ };
+
+	try
+	{
+		auto mb = pe(&data[0], data.size());
+		auto nt = mb.get_nt();
+
+		out["success"] = true;
+		out["data"] = mb.serialize();
+	}
+	catch (...)
+	{
+		out["success"] = false;
+	}
+
+	std::cout << out.dump(4) << std::endl;
+
+	return;
 
 	std::time_t time = nt->FileHeader.TimeDateStamp;
 
